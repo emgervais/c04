@@ -35,10 +35,13 @@ WrongCat::~WrongCat() {
 }
 
 WrongCat::WrongCat(const WrongCat & rhs) {
-    *this = rhs;
+    if(this != &rhs) {
+    }
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& rhs) {
+        if(this != &rhs) {
+    }
     return *this;
 }
 
