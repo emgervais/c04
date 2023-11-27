@@ -9,10 +9,13 @@ Animal::~Animal() {
 }
 
 Animal::Animal(const Animal & rhs) {
-    *this = rhs;
+    if(this != &rhs)  {
+{
 }
 
 Animal& Animal::operator=(const Animal& rhs) {
+    if(this != &rhs) {
+{ 
     return *this;
 }
 
@@ -36,10 +39,13 @@ Dog::~Dog() {
 }
 
 Dog::Dog(const Dog & rhs) {
-    *this = rhs;
+    if(this != &rhs)  {
+{
 }
 
 Dog& Dog::operator=(const Dog& rhs) {
+    if(this != &rhs)  {
+{
     return *this;
 }
 
@@ -60,10 +66,13 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat & rhs) {
-    *this = rhs;
+    if(this != &rhs)  {
+{
 }
 
 Cat& Cat::operator=(const Cat& rhs) {
+    if(this != &rhs)  {
+{
     return *this;
 }
 
