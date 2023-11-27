@@ -1,33 +1,34 @@
 #include "Animal.hpp"
 
-Animal::Animal() : Type("animal") {
-    std::cout << "Animal constructor" << std::endl;
+AAnimal::AAnimal() : Type("Aanimal") {
+    std::cout << "AAnimal constructor" << std::endl;
 }
 
-Animal::~Animal() {
-    std::cout << "animal destructor" << std::endl;
+AAnimal::~AAnimal() {
+    std::cout << "Aanimal destructor" << std::endl;
 }
 
-Animal::Animal(const Animal & rhs) {
+AAnimal::AAnimal(const AAnimal & rhs) {
     *this = rhs;
 }
 
-Animal& Animal::operator=(const Animal& rhs) {
-    this->Type = rhs.Type;
+AAnimal& AAnimal::operator=(const AAnimal& rhs) {
+    if(this != &rhs)
+        this->Type = rhs.Type;
     return *this;
 }
 
-void Animal::makeSound() const {
+void AAnimal::makeSound() const {
     std::cout << "GRR" << std::endl;
 }
 
-std::string Animal::getType() const {
+std::string AAnimal::getType() const {
     return this->Type;
 }
 
 //---------------------------------
 
-Dog::Dog() : Animal() {
+Dog::Dog() : AAnimal() {
     Type = "Dog";
     b = new Brain();
     std::cout << "Dog constructor" << std::endl;
@@ -38,7 +39,7 @@ Dog::~Dog() {
     std::cout << "Dog destructor" << std::endl;
 }
 
-Dog::Dog(const Dog & rhs) : Animal() {
+Dog::Dog(const Dog & rhs) : AAnimal() {
     b = new Brain(*rhs.b);
     *this = rhs;
 }
@@ -55,9 +56,15 @@ void Dog::makeSound() const {
     std::cout << "Wouf" << std::endl;
 }
 
+void Dog::compare(Dog const & other_dog) const {
+	std::cout << std::endl;
+	std::cout << "1.address: " << static_cast<void*>(this->b) << std::endl;
+	std::cout << "2.address: " << static_cast<void*>(other_dog.b) << std::endl;
+}
+
 //------------------------------
 
-Cat::Cat() : Animal() {
+Cat::Cat() : AAnimal() {
     this->Type = "Cat";
     this->b = new Brain();
     std::cout << "Cat constructor" << std::endl;
@@ -68,7 +75,7 @@ Cat::~Cat() {
     delete this->b;
 }
 
-Cat::Cat(const Cat & rhs) : Animal() {
+Cat::Cat(const Cat & rhs) : AAnimal() {
     this->b = new Brain(*rhs.b);
     *this = rhs;
 }
@@ -84,4 +91,3 @@ Cat& Cat::operator=(const Cat& rhs) {
 void Cat::makeSound() const {
     std::cout << "Miaw" << std::endl;
 }
-
